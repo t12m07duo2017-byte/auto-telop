@@ -1,0 +1,32 @@
+{
+  "_comment": "新規顧客用の空テンプレ。auto-telop new-customer で自動コピーされる。analyze-templateの出力(style_analysis.json)を見ながら、このお客さんのテンプレ.prprojに実在するEssential Graphicsスタイル名・SE音声ファイル名に置き換えて手入力すること。詳細はdocs/新規顧客追加手順.mdを参照。",
+
+  "base_caption_style_name": "",
+  "base_caption_color_label": "",
+
+  "fallback_structural_style_uid_style_name": "",
+  "_fallback_structural_note": "base_caption_style_nameや、テンプレのカタログに配置済みインスタンスが無いスタイルを使う際、構造(位置/アンカー/スケール等のクローン元)だけを借りるスタイル名。単純な構造(テキスト1つだけ)のスタイルを指定すること。",
+
+  "scale_capped_categories": [],
+  "category_color_label": {},
+
+  "categories": {
+    "ポジティブ": {
+      "note": "ポジティブな感情的なセリフの箇所に入れる",
+      "styles": {}
+    },
+    "ネガティブ": {
+      "note": "ネガティブな感情的なセリフの箇所に入れる",
+      "styles": {}
+    },
+    "強調テロップ": {
+      "note": "強調したいセリフの箇所に入れる",
+      "styles": {}
+    }
+  },
+
+  "_font_note": "scale_capped_categoriesのスタイルは、セーフマージンに収まるスケールを実フォントで計算する。ここに無いスタイル、またはフォントファイルが見つからない環境では、文字数ベースの簡易計算にフォールバックする(省略可)。",
+  "style_font_name": {},
+  "font_paths": {},
+  "scale_calibration": {}
+}

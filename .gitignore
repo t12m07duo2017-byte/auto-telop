@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.onset_tmp/
+*.onset_checkpoint.json
+.venv/
+venv/
+
+# OS
+.DS_Store
+
+# 顧客固有データ(公開リポジトリに絶対に含めない)
+customers/*/
+!customers/_template/
+!customers/_template/**
+
+# 秘密情報・個人の作業ファイル(このディレクトリに残しつつgit管理だけ外す)
+gemini_api_key.txt
+photoac_cookie.txt
+*.pem
+*_signing_key*
+license_signing_key*
+
+# 生成物・中間ファイル・大容量メディア(個人の作業残骸)
+work/
+work_final/
+Adobe Premiere Pro Audio Previews/
+Adobe Premiere Pro Auto-Save/
+*.mp4
+*.mov
+*.wav
+*.mp3
+output.prproj
+output.prin
+*.log
+formatted_script*.rtf
+
+# RTFパーサー比較テスト用のローカルサンプル一覧(実顧客台本のパスを含みうる)
+tests/rtf_samples.local.txt

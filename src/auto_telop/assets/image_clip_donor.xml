@@ -1,0 +1,246 @@
+<PremiereData>
+<ClipProjectItem ObjectUID="2f58fe41-ae42-40eb-8f36-af56909c9966" ClassID="cb4e0ed7-aca1-4171-8525-e3658dec06dd" Version="1">
+		<ProjectItem Version="1">
+			<Node Version="1">
+				<Properties Version="1">
+					<project.icon.view.grid.order>172</project.icon.view.grid.order>
+					<Column.PropertyText.Label>BE.Prefs.LabelColors.3</Column.PropertyText.Label>
+				</Properties>
+			</Node>
+			<Name>24020991_m.jpg</Name>
+		</ProjectItem>
+		<MasterClip ObjectURef="38a137bd-bd82-4572-ac80-8e83dc83bc91"/>
+	</ClipProjectItem>
+<MasterClip ObjectUID="38a137bd-bd82-4572-ac80-8e83dc83bc91" ClassID="fb11c33a-b0a9-4465-aa94-b6d5db2628cf" Version="12">
+		<LoggingInfo ObjectRef="728"/>
+		<Clips Version="1">
+			<Clip Index="0" ObjectRef="729"/>
+		</Clips>
+		<AudioClipChannelGroups ObjectRef="730"/>
+		<Name>24020991_m.jpg</Name>
+		<MasterClipChangeVersion>6</MasterClipChangeVersion>
+	</MasterClip>
+<ClipLoggingInfo ObjectID="728" ClassID="77ab7fdd-dcdf-465d-9906-7a330ca1e738" Version="10">
+		<CaptureMode>2</CaptureMode>
+		<ClipName>24020991_m.jpg</ClipName>
+		<TimecodeFormat>103</TimecodeFormat>
+		<MediaFrameRate>8475667200</MediaFrameRate>
+	</ClipLoggingInfo>
+<VideoClip ObjectID="729" ClassID="9308dbef-2440-4acb-9ab2-953b9a4e82ec" Version="11">
+		<Clip Version="18">
+			<Node Version="1">
+				<Properties Version="1">
+					<BE.Prefs.StillImages.DefaultIsDropFrame>false</BE.Prefs.StillImages.DefaultIsDropFrame>
+					<asl.clip.label.color>8851829</asl.clip.label.color>
+					<asl.clip.label.name>BE.Prefs.LabelColors.3</asl.clip.label.name>
+				</Properties>
+			</Node>
+			<MarkerOwner Version="1">
+				<Markers ObjectRef="3118"/>
+			</MarkerOwner>
+			<Source ObjectRef="3119"/>
+			<InPoint>0</InPoint>
+			<OutPoint>1262874412800</OutPoint>
+			<ClipID>55be644c-c990-4067-979a-cfb558230319</ClipID>
+			<InUse>false</InUse>
+		</Clip>
+	</VideoClip>
+<Markers ObjectID="3118" ClassID="bee50706-b524-416c-9f03-b596ce5f6866" Version="4">
+		<ByGUID>byGUID</ByGUID>
+		<LastMetadataState>00000000-0000-0000-0000-000000000000</LastMetadataState>
+		<LastContentState>cde8bd11-ca1e-1c0c-6105-edb300000024</LastContentState>
+	</Markers>
+<VideoMediaSource ObjectID="3119" ClassID="e64ddf74-8fac-4682-8aa8-0e0ca2248949" Version="2">
+		<MediaSource Version="4">
+			<Content Version="10">
+			</Content>
+			<Media ObjectURef="3739ed2d-473e-4f92-afd6-dfff0391c70d"/>
+		</MediaSource>
+		<OriginalDuration>10973491200000000</OriginalDuration>
+	</VideoMediaSource>
+<Media ObjectUID="3739ed2d-473e-4f92-afd6-dfff0391c70d" ClassID="7a5c103e-f3ac-4391-b6b4-7cc3d2f9a7ff" Version="30">
+		<VideoStream ObjectRef="10069"/>
+		<ModificationState Encoding="base64" BinaryHash="b255e6a9-fcaf-4ff1-8cf1-bcea00000054">YwBkAGUAOABiAGQAMQAxAC0AYwBhADEAZQAtADEAYwAwAGMALQA2ADEAMAA1AC0AZQBkAGIAMwAwADAAMAAwADAAMAAyADQA
+		</ModificationState>
+		<RelativePath>./donor_image.jpg</RelativePath>
+		<ImplementationID>1fa18bfa-255c-44b1-ad73-56bcd99fceaf</ImplementationID>
+		<Title>24020991_m.jpg</Title>
+		<FileKey>8e66f8c7-57f9-48e1-87fe-d0091695703c</FileKey>
+		<Infinite>true</Infinite>
+		<ContentAndMetadataState>cde8bd11-ca1e-1c0c-6105-edb300000024</ContentAndMetadataState>
+		<RelativePath>./donor_image.jpg</RelativePath>
+		<ActualMediaFilePath>/placeholder/donor_image.jpg</ActualMediaFilePath>
+		<FilePath>/placeholder/donor_image.jpg</FilePath>
+	</Media>
+<VideoStream ObjectID="10069" ClassID="a36e4719-3ec6-4a0c-ab11-8b4aab377aa5" Version="22">
+		<CodecType>1785750887</CodecType>
+		<OriginalColorSpace>{"baseColorProfile":{"colorProfileName":"BT.709 RGB Full"},"baseProfileType":1}</OriginalColorSpace>
+		<FieldTypeIsUncertain>true</FieldTypeIsUncertain>
+		<FrameRate>8475667200</FrameRate>
+		<FrameRect>0,0,1920,1277</FrameRect>
+		<IsStill>true</IsStill>
+		<Duration>10973491200000000</Duration>
+	</VideoStream>
+<ClipChannelGroupVectorSerializer ObjectID="730" ClassID="a3127a8c-95d4-456e-a7f5-171b3f922426" Version="1">
+	</ClipChannelGroupVectorSerializer>
+<SubClip ObjectID="28881" ClassID="e0c58dc9-dbdd-4166-aef7-5db7e3f22e84" Version="6">
+		<Clip ObjectRef="60069"/>
+		<MasterClip ObjectURef="38a137bd-bd82-4572-ac80-8e83dc83bc91"/>
+		<OrigChGrp>0</OrigChGrp>
+		<Name>24020991_m.jpg</Name>
+	</SubClip>
+<VideoClip ObjectID="60069" ClassID="9308dbef-2440-4acb-9ab2-953b9a4e82ec" Version="11">
+		<Clip Version="18">
+			<Node Version="1">
+				<Properties Version="1">
+					<BE.Prefs.StillImages.DefaultIsDropFrame>false</BE.Prefs.StillImages.DefaultIsDropFrame>
+				</Properties>
+			</Node>
+			<MarkerOwner Version="1">
+				<Markers ObjectRef="3118"/>
+			</MarkerOwner>
+			<Source ObjectRef="3119"/>
+			<InPoint>914456685542400</InPoint>
+			<OutPoint>915405960268800</OutPoint>
+			<ClipID>2223ea7c-0abb-4e05-9f17-79b3425dc650</ClipID>
+		</Clip>
+	</VideoClip>
+<VideoComponentChain ObjectID="28880" ClassID="0970e08a-f58f-4108-b29a-1a717b8e12e2" Version="3">
+		<DefaultMotion>true</DefaultMotion>
+		<DefaultOpacity>true</DefaultOpacity>
+		<DefaultMotionComponentID>1</DefaultMotionComponentID>
+		<DefaultOpacityComponentID>2</DefaultOpacityComponentID>
+		<ComponentChain Version="3">
+			<Node Version="1">
+				<Properties Version="1">
+					<MZ.ComponentChain.ActiveComponentID>2</MZ.ComponentChain.ActiveComponentID>
+					<MZ.ComponentChain.ActiveComponentParamIndex>4294967295</MZ.ComponentChain.ActiveComponentParamIndex>
+				</Properties>
+			</Node>
+			<Components Version="1">
+				<Component Index="0" ObjectRef="60068"/>
+			</Components>
+		</ComponentChain>
+	</VideoComponentChain>
+<VideoFilterComponent ObjectID="60070" ClassID="d10da199-beea-4dd1-b941-ed3a78766d50" Version="9">
+		<Component Version="7">
+			<Params Version="1">
+				<Param Index="0" ObjectRef="168298"/>
+				<Param Index="1" ObjectRef="168299"/>
+				<Param Index="2" ObjectRef="168300"/>
+				<Param Index="3" ObjectRef="168301"/>
+				<Param Index="4" ObjectRef="168302"/>
+				<Param Index="5" ObjectRef="168303"/>
+				<Param Index="6" ObjectRef="168304"/>
+				<Param Index="7" ObjectRef="168305"/>
+				<Param Index="8" ObjectRef="168306"/>
+				<Param Index="9" ObjectRef="168307"/>
+				<Param Index="10" ObjectRef="168308"/>
+				<Param Index="11" ObjectRef="168309"/>
+			</Params>
+			<ID>3</ID>
+			<DisplayName>トランスフォーム</DisplayName>
+		</Component>
+		<VideoFilterType>2</VideoFilterType>
+		<MatchName>AE.ADBE Geometry2</MatchName>
+	</VideoFilterComponent>
+<VideoClipTrackItem ObjectID="17170" ClassID="368b0406-29e3-4923-9fcd-094fbf9a1089" Version="8">
+		<ClipTrackItem Version="8">
+			<ComponentOwner Version="1">
+				<Components ObjectRef="28880"/>
+			</ComponentOwner>
+			<TrackItem Version="4">
+				<End>9925006291200</End>
+				<Start>8975731564800</Start>
+			</TrackItem>
+			<SubClip ObjectRef="28881"/>
+		</ClipTrackItem>
+		<ToneMapSettings>{"peak":-1,"version":3}</ToneMapSettings>
+		<PixelAspectRatio>1,1</PixelAspectRatio>
+		<FrameRect>0,0,1920,1080</FrameRect>
+	</VideoClipTrackItem>
+<PointComponentParam ObjectID="168298" ClassID="ca81d347-309b-44d2-acc7-1c572efb973c" Version="4">
+		<Name>アンカーポイント</Name>
+		<ParameterID>1</ParameterID>
+		<StartKeyframe>-91445760000000000,0.5:0.5,0,0,0,0,0,0,5,4,0,0,0,0</StartKeyframe>
+	</PointComponentParam>
+<PointComponentParam ObjectID="168299" ClassID="ca81d347-309b-44d2-acc7-1c572efb973c" Version="4">
+		<Name>位置</Name>
+		<ParameterID>2</ParameterID>
+		<StartKeyframe>-91445760000000000,0.5:0.5,0,0,0,0,0,0,5,4,0,0,0,0</StartKeyframe>
+	</PointComponentParam>
+<VideoComponentParam ObjectID="168300" ClassID="cc12343e-f113-4d3b-ae05-b287db77d461" Version="10">
+		<ParameterID>11</ParameterID>
+		<StartKeyframe>-91445760000000000,true,0,0,0,0,0,0</StartKeyframe>
+	</VideoComponentParam>
+<VideoComponentParam ObjectID="168301" ClassID="fe47129e-6c94-4fc0-95d5-c056a517aaf3" Version="10">
+		<UpperUIBound>200</UpperUIBound>
+		<IsTimeVarying>true</IsTimeVarying>
+		<Name>スケール (高さ)</Name>
+		<LowerUIBound>-200</LowerUIBound>
+		<ParameterID>3</ParameterID>
+		<StartKeyframe>-91445760000000000,100.,0,0,0,0,0,0</StartKeyframe>
+		<Keyframes>914456685542400,100.,0,0,0,0.16666666666666666,2.8762024923253446,0.16666666666666666;918872508153600,150.,0,0,2.8762024923253446,0.16666666666666666,0,0.16666666666666666;</Keyframes>
+		<CurrentValue>150</CurrentValue>
+		<UpperBound>30000</UpperBound>
+		<LowerBound>-30000</LowerBound>
+	</VideoComponentParam>
+<VideoComponentParam ObjectID="168302" ClassID="fe47129e-6c94-4fc0-95d5-c056a517aaf3" Version="10">
+		<UpperUIBound>200</UpperUIBound>
+		<Name>スケール (幅)</Name>
+		<LowerUIBound>-200</LowerUIBound>
+		<ParameterID>4</ParameterID>
+		<StartKeyframe>-91445760000000000,100.,0,0,0,0,0,0</StartKeyframe>
+		<UpperBound>30000</UpperBound>
+		<LowerBound>-30000</LowerBound>
+	</VideoComponentParam>
+<VideoComponentParam ObjectID="168303" ClassID="fe47129e-6c94-4fc0-95d5-c056a517aaf3" Version="10">
+		<Name>歪曲</Name>
+		<ParameterID>5</ParameterID>
+		<StartKeyframe>-91445760000000000,0.,0,0,0,0,0,0</StartKeyframe>
+		<UpperBound>70</UpperBound>
+		<LowerBound>-70</LowerBound>
+	</VideoComponentParam>
+<VideoComponentParam ObjectID="168304" ClassID="fe47129e-6c94-4fc0-95d5-c056a517aaf3" Version="10">
+		<ParameterControlType>3</ParameterControlType>
+		<Name>歪曲軸</Name>
+		<ParameterID>6</ParameterID>
+		<StartKeyframe>-91445760000000000,0.,0,0,0,0,0,0</StartKeyframe>
+		<UpperBound>32767</UpperBound>
+		<LowerBound>-32768</LowerBound>
+	</VideoComponentParam>
+<VideoComponentParam ObjectID="168305" ClassID="fe47129e-6c94-4fc0-95d5-c056a517aaf3" Version="10">
+		<ParameterControlType>3</ParameterControlType>
+		<Name>回転</Name>
+		<ParameterID>7</ParameterID>
+		<StartKeyframe>-91445760000000000,0.,0,0,0,0,0,0</StartKeyframe>
+		<UpperBound>32767</UpperBound>
+		<LowerBound>-32768</LowerBound>
+	</VideoComponentParam>
+<VideoComponentParam ObjectID="168306" ClassID="fe47129e-6c94-4fc0-95d5-c056a517aaf3" Version="10">
+		<Name>不透明度</Name>
+		<ParameterID>8</ParameterID>
+		<StartKeyframe>-91445760000000000,100.,0,0,0,0,0,0</StartKeyframe>
+		<UpperBound>100</UpperBound>
+		<LowerBound>0</LowerBound>
+	</VideoComponentParam>
+<VideoComponentParam ObjectID="168307" ClassID="cc12343e-f113-4d3b-ae05-b287db77d461" Version="10">
+		<ParameterID>9</ParameterID>
+		<StartKeyframe>-91445760000000000,true,0,0,0,0,0,0</StartKeyframe>
+	</VideoComponentParam>
+<VideoComponentParam ObjectID="168308" ClassID="fe47129e-6c94-4fc0-95d5-c056a517aaf3" Version="10">
+		<Name>シャッター角度</Name>
+		<ParameterID>10</ParameterID>
+		<StartKeyframe>-91445760000000000,0.,0,0,0,0,0,0</StartKeyframe>
+		<UpperBound>360</UpperBound>
+		<LowerBound>0</LowerBound>
+	</VideoComponentParam>
+<VideoComponentParam ObjectID="168309" ClassID="6e02e8bb-2569-46b2-8ab1-4ab11c43e9c8" Version="10">
+		<DiscontinuousInterpolate>true</DiscontinuousInterpolate>
+		<Name>サンプリング</Name>
+		<ParameterID>12</ParameterID>
+		<StartKeyframe>-91445760000000000,0,0,0,0,0,0,0</StartKeyframe>
+		<UpperBound>1</UpperBound>
+		<LowerBound>0</LowerBound>
+	</VideoComponentParam>
+</PremiereData>

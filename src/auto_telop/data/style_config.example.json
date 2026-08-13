@@ -1,0 +1,53 @@
+{
+  "_comment": "汎用サンプル(実データではない、開発者向けの記入例)。実際の顧客設定は customers/<顧客名>/style_se_categories.json に作成すること。詳細は docs/新規顧客追加手順.md 参照。",
+
+  "base_caption_style_name": "基本テロップ",
+  "base_caption_color_label": "Lavender",
+
+  "fallback_structural_style_uid_style_name": "強調",
+  "_fallback_structural_note": "base_caption_style_nameや、テンプレのカタログに配置済みインスタンスが無いスタイルを使う際、構造(位置/アンカー/スケール等のクローン元)だけを借りるスタイル名。単純な構造(テキスト1つだけ)のスタイルを指定すること。",
+
+  "scale_capped_categories": ["ポジティブ", "ネガティブ"],
+  "category_color_label": {
+    "ポジティブ": "Rose",
+    "ネガティブ": "Blue",
+    "強調テロップ": "Mango"
+  },
+
+  "categories": {
+    "ポジティブ": {
+      "note": "ポジティブな感情的なセリフの箇所に入れる",
+      "styles": {
+        "喜び1": "キラッ.mp3",
+        "喜び2": "ピン.mp3"
+      }
+    },
+    "ネガティブ": {
+      "note": "ネガティブな感情的なセリフの箇所に入れる",
+      "styles": {
+        "不穏1": "警告音.wav",
+        "哀しみ1": "チリン.mp3"
+      }
+    },
+    "強調テロップ": {
+      "note": "強調したいセリフの箇所に入れる",
+      "styles": {
+        "角丸オレンジ": "カキッ.mp3",
+        "角丸黒": "パッ.mp3"
+      }
+    }
+  },
+
+  "_font_note": "scale_capped_categoriesのスタイルは、セーフマージンに収まるスケールを実フォントで計算する。ここに無いスタイル、またはフォントファイルが見つからない環境では、文字数ベースの簡易計算にフォールバックする(省略可)。",
+  "style_font_name": {
+    "喜び1": "SourceHanSerif-Heavy"
+  },
+  "font_paths": {
+    "SourceHanSerif-Heavy": "@bundled"
+  },
+  "scale_calibration": {
+    "text": "サンプルテキストです",
+    "scale_pct": 139.0,
+    "font": "SourceHanSerif-Heavy"
+  }
+}
