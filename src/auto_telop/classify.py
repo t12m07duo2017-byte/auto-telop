@@ -259,10 +259,18 @@ class RtfCueLike:
     category: str
 
 
+# このカテゴリはランダム選定時、直前に選ばれたスタイルと同じものが
+# 連続しないよう優先的に避ける(該当カテゴリ内の使用履歴を見る)。
+_NO_CONSECUTIVE_REPEAT_CATEGORIES = {"ポジティブ", "ネガティブ"}
+
+
 def _random_rtf_styles(cues: List[RtfCueLike], categories: dict) -> dict:
     """ANTHROPIC_API_KEY未設定時のフォールバック: AI判定を行わず、
-    各キューのカテゴリ内からスタイルをランダムに1つ選ぶ(コスト削減用)。"""
+    各キューのカテゴリ内からスタイルをランダムに1つ選ぶ(コスト削減用)。
+    ポジティブ/ネガティブは、そのカテゴリ内の直前の選定と同じスタイルが
+    連続しないよう、選択肢が2つ以上あれば直前と異なるものを優先する。"""
     results = {}
+    last_style_by_category: Dict[str, str] = {}
     for c in cues:
         if not c.category:
             continue
@@ -270,7 +278,14 @@ def _random_rtf_styles(cues: List[RtfCueLike], categories: dict) -> dict:
         style_names = list(cat.get("styles", {}).keys())
         if not style_names:
             continue
-        results[str(c.index)] = [{"phrase": c.text, "style_name": random.choice(style_names)}]
+        if c.category in _NO_CONSECUTIVE_REPEAT_CATEGORIES and len(style_names) > 1:
+            last = last_style_by_category.get(c.category)
+            candidates = [s for s in style_names if s != last] or style_names
+        else:
+            candidates = style_names
+        chosen = random.choice(candidates)
+        last_style_by_category[c.category] = chosen
+        results[str(c.index)] = [{"phrase": c.text, "style_name": chosen}]
     return {"results": results}
 
 

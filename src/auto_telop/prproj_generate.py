@@ -163,6 +163,13 @@ CATEGORY_COLOR_LABEL = {
 }
 BASE_CAPTION_COLOR_LABEL = LABEL_COLOR_INDEX["Lavender"]
 
+# テンプレ内に既にある古いテロップ/SE(このツール導入前の手作業編集の
+# 残骸等)を、生成のたびに掃除したいトラック。style_se_categories.jsonの
+# clear_existing_tracksで指定(例: {"video": ["V1","V2"], "audio": ["A1"]})。
+# 既定は空(何もクリアしない)。
+CLEAR_EXISTING_VIDEO_INDICES: set = set()
+CLEAR_EXISTING_AUDIO_INDICES: set = set()
+
 # 静止画クリップのドナー一式(ユーザー自身の実プロジェクトから抽出した、
 # 実際に画像がインポート・配置された状態のブロック26個)。
 # yamaさんテンプレ.prproj自体にはインポート済みの静止画クリップが1つも
@@ -559,6 +566,56 @@ def add_video_tracks(text: str, allocator: ObjectIdAllocator, count: int,
     )
     text = text[:group_span[0]] + new_group_block + text[group_span[1]:]
     return text, new_uids
+
+
+# ---------------------------------------------------------------------------
+# 既存トラックの配置済みクリップの削除 (CLEAR_EXISTING_VIDEO/AUDIO_INDICES)
+# ---------------------------------------------------------------------------
+
+def _parse_track_name(name: str) -> tuple:
+    """"V1"/"A1"のような1始まりのトラック名を(種別, 0始まりIndex)に変換する。"""
+    m = re.match(r"^([VA])(\d+)$", name.strip())
+    if not m:
+        raise ValueError(f"不正なトラック名です(例: V1, A1): {name!r}")
+    return m.group(1), int(m.group(2)) - 1
+
+
+def _clear_track_items(text: str, track_tag: str, track_uid: str) -> str:
+    """指定トラック(track_tag: VideoClipTrack/AudioClipTrack)の<TrackItems>
+    要素ごと除去し、空トラックにする(参照されなくなった配置先の
+    AudioClipTrackItem/VideoClipTrackItem等のオブジェクト自体は、他の
+    箇所同様reserializeせず放置する。Premiereは未参照オブジェクトが
+    ファイル内に残っていても問題なく開ける)。"""
+    span = find_block_by_object_uid(text, track_tag, track_uid)
+    if span is None:
+        return text
+    block = text[span[0]:span[1]]
+    new_block = re.sub(r"\s*<TrackItems[^>]*>.*?</TrackItems>", "", block, flags=re.S)
+    return text[:span[0]] + new_block + text[span[1]:]
+
+
+def clear_existing_track_items(text: str, sequence_uid: str,
+                                video_indices: set, audio_indices: set) -> str:
+    """VideoTrackGroup/AudioTrackGroup内で、指定Index(0始まり)のトラックに
+    配置済みの既存クリップをすべて削除する(トラック自体は残し、中身だけ
+    空にする)。テンプレにこのツール導入前からある古いテロップ/SE等を
+    掃除するための、customers/<顧客名>/style_se_categories.jsonの
+    clear_existing_tracks設定向け。"""
+    if video_indices:
+        video_group_id = _find_track_group_object_id(text, sequence_uid, "VideoTrackGroup")
+        video_group_span = find_block_by_object_id(text, "VideoTrackGroup", video_group_id)
+        video_group_block = text[video_group_span[0]:video_group_span[1]]
+        for idx, uid in re.findall(r'<Track Index="(\d+)" ObjectURef="([0-9a-fA-F-]{36})"/>', video_group_block):
+            if int(idx) in video_indices:
+                text = _clear_track_items(text, "VideoClipTrack", uid)
+    if audio_indices:
+        audio_group_id = _find_track_group_object_id(text, sequence_uid, "AudioTrackGroup")
+        audio_group_span = find_block_by_object_id(text, "AudioTrackGroup", audio_group_id)
+        audio_group_block = text[audio_group_span[0]:audio_group_span[1]]
+        for idx, uid in re.findall(r'<Track Index="(\d+)" ObjectURef="([0-9a-fA-F-]{36})"/>', audio_group_block):
+            if int(idx) in audio_indices:
+                text = _clear_track_items(text, "AudioClipTrack", uid)
+    return text
 
 
 # ---------------------------------------------------------------------------
@@ -1081,6 +1138,7 @@ def load_style_config(style_config_path: str, style_map: dict) -> None:
     global BASE_CAPTION_STYLE_NAME, BASE_CAPTION_COLOR_LABEL, FALLBACK_STRUCTURAL_STYLE_UID
     global CATEGORY_COLOR_LABEL, STYLE_FONT_NAME, FONT_PATHS, SCALE_CAPPED_CATEGORIES
     global _CALIBRATION_TEXT, _CALIBRATION_SCALE_PCT, _CALIBRATION_FONT, _SAFE_WIDTH_UNITS
+    global CLEAR_EXISTING_VIDEO_INDICES, CLEAR_EXISTING_AUDIO_INDICES
 
     if not style_config_path:
         return
@@ -1097,6 +1155,22 @@ def load_style_config(style_config_path: str, style_map: dict) -> None:
     fallback_name = cfg.get("fallback_structural_style_uid_style_name")
     if fallback_name and fallback_name in style_map:
         FALLBACK_STRUCTURAL_STYLE_UID = style_map[fallback_name]
+
+    clear_cfg = cfg.get("clear_existing_tracks") or {}
+    video_names = clear_cfg.get("video", [])
+    audio_names = clear_cfg.get("audio", [])
+    CLEAR_EXISTING_VIDEO_INDICES = set()
+    for name in video_names:
+        kind, idx = _parse_track_name(name)
+        if kind != "V":
+            raise ValueError(f"clear_existing_tracks.videoにはV始まりの名前を指定してください: {name!r}")
+        CLEAR_EXISTING_VIDEO_INDICES.add(idx)
+    CLEAR_EXISTING_AUDIO_INDICES = set()
+    for name in audio_names:
+        kind, idx = _parse_track_name(name)
+        if kind != "A":
+            raise ValueError(f"clear_existing_tracks.audioにはA始まりの名前を指定してください: {name!r}")
+        CLEAR_EXISTING_AUDIO_INDICES.add(idx)
 
     cat_colors = cfg.get("category_color_label", {})
     CATEGORY_COLOR_LABEL = {
@@ -1305,25 +1379,28 @@ def apply_align_json(text: str, allocator: ObjectIdAllocator, align_json_path: s
         if not seg_text or seg_start >= seg_end:
             continue
         overlapping = [(s, e) for s, e in emphasis_intervals if s < seg_end and e > seg_start]
+        clipped_overlap = [(max(s, seg_start), min(e, seg_end)) for s, e in overlapping]
         # このセグメントと時間的に重なる強調フレーズのうち、実際にこの
-        # セグメントのテキストに含まれるものだけに絞る。RTFモードでは
-        # 基本テロップと強調テロップはRTFの行単位で完全に別カテゴリ
-        # (排他)であり、基本テロップ側のテキストに強調フレーズがそのまま
-        # 含まれることは無い。そのため、V8の隙間埋め(前回追加)で基本
-        # テロップの終了時刻が延び、たまたま時間的にはV9強調テロップの
-        # 区間と重なることがあっても、テキスト上の重複が無ければ分割は
-        # 行わない(分割すると、テキスト側は1個のままなのに時間側だけ
-        # 2〜3個に別れ、zip()で後半の時間区間が無言で捨てられ、隙間埋めが
-        # 台無しになるバグがあったため)。
+        # セグメントのテキストに含まれるものを、文字位置ベースで抜き取る
+        # (テキスト側も対応して分割する)。
         phrases_here = []
         for s, e, phrase, *_ in valid_emphasis:
             if s < seg_end and e > seg_start and phrase in seg_text:
                 phrases_here.append(phrase)
         if not phrases_here:
-            time_segments = [(seg_start, seg_end)]
-            text_segments = [seg_text]
+            if not clipped_overlap:
+                time_segments = [(seg_start, seg_end)]
+                text_segments = [seg_text]
+            else:
+                # V9(強調テロップ)がこのセグメントの一部と時間的に重なるが、
+                # そのフレーズはこのセグメントのテキストには含まれない
+                # (例: V8の隙間埋めで終了時刻が次のRTF行のV9区間まで延びた
+                # ケース)。V9の真下のV8には基本テロップを置かない仕様の
+                # ため、テキストは変えずに時間側だけ重複区間を除いて残りを
+                # そのまま使う。
+                time_segments = _subtract_intervals(seg_start, seg_end, clipped_overlap)
+                text_segments = [seg_text] * len(time_segments)
         else:
-            clipped_overlap = [(max(s, seg_start), min(e, seg_end)) for s, e in overlapping]
             time_segments = _subtract_intervals(seg_start, seg_end, clipped_overlap)
             text_segments = _text_segments_excluding_phrases(seg_text, phrases_here)
             if len(time_segments) != len(text_segments):
@@ -1483,6 +1560,17 @@ def generate_prproj(template_path: str, audio_path: str, output_path: str,
                              telop_track_uid=telop_track_uid, base_track_uid=base_track_uid,
                              se_track_uid=se_track_uid, se_track_uid2=se_track_uid2,
                              image_track_uid=image_track_uid, image_map=image_map)
+
+    # load_style_config()がapply_align_json内でstyle_se_categories.jsonの
+    # clear_existing_tracks設定を読み込み済みのため、ここで初めて中身が
+    # 確定する。新規追加したV5-V9/空きトラックには一切触れない
+    # (このタイミングまでの空きトラック自動検出が終わった後に実行するため)。
+    if CLEAR_EXISTING_VIDEO_INDICES or CLEAR_EXISTING_AUDIO_INDICES:
+        text = clear_existing_track_items(text, sequence_uid,
+                                           CLEAR_EXISTING_VIDEO_INDICES, CLEAR_EXISTING_AUDIO_INDICES)
+        v_names = ",".join(f"V{i + 1}" for i in sorted(CLEAR_EXISTING_VIDEO_INDICES))
+        a_names = ",".join(f"A{i + 1}" for i in sorted(CLEAR_EXISTING_AUDIO_INDICES))
+        print(f"既存トラックの配置済みクリップを削除しました: video=[{v_names}] audio=[{a_names}]", file=sys.stderr)
 
     save_prproj_text(output_path, text)
     print(f"出力しました: {output_path}", file=sys.stderr)

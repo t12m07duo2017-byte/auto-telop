@@ -7,6 +7,9 @@
   "fallback_structural_style_uid_style_name": "",
   "_fallback_structural_note": "base_caption_style_nameや、テンプレのカタログに配置済みインスタンスが無いスタイルを使う際、構造(位置/アンカー/スケール等のクローン元)だけを借りるスタイル名。単純な構造(テキスト1つだけ)のスタイルを指定すること。",
 
+  "clear_existing_tracks": {},
+  "_clear_existing_tracks_note": "このツール導入前からテンプレに配置済みの古いテロップ/SE等を、生成のたびに削除して空にしたいトラックがあれば指定する(例: {\"video\": [\"V1\", \"V2\"], \"audio\": [\"A1\"]})。このツールが新規に使うトラック(空きトラック自動検出分・追加するV5以降)には触れないため、それらの番号を書く必要はない。不要なら空のままでよい。",
+
   "scale_capped_categories": [],
   "category_color_label": {},
 
