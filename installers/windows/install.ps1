@@ -17,7 +17,7 @@
 
 $ErrorActionPreference = "Stop"
 
-$RepoUrl = "https://github.com/REPLACE_ME_ORG/REPLACE_ME_REPO.git"
+$RepoUrl = "https://github.com/t12m07duo2017-byte/auto-telop.git"
 $InstallDir = Join-Path $env:USERPROFILE ".auto_telop"
 $VenvDir = Join-Path $InstallDir "venv"
 $AppDir = Join-Path $env:USERPROFILE "Desktop\AutoTelop"

@@ -20,7 +20,7 @@
 
 set -euo pipefail
 
-REPO_URL="https://github.com/REPLACE_ME_ORG/REPLACE_ME_REPO.git"
+REPO_URL="https://github.com/t12m07duo2017-byte/auto-telop.git"
 INSTALL_DIR="$HOME/.auto_telop"
 VENV_DIR="$INSTALL_DIR/venv"
 APP_DIR="$HOME/Desktop/AutoTelop"
