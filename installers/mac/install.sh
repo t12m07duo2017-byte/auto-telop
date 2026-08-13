@@ -73,7 +73,7 @@ mkdir -p "$APP_DIR/入力" "$APP_DIR/customer_package" "$APP_DIR/出力" "$APP_D
 
 if [[ ! -f "$APP_DIR/customer_package/README.txt" ]]; then
 cat > "$APP_DIR/customer_package/README.txt" <<'EOF'
-このフォルダには、担当者から届いた3つのファイルを入れてください:
+このフォルダには、担当者から届いた4つのファイルを入れてください:
   - template.prproj
   - style_analysis.json
   - style_se_categories.json
@@ -170,7 +170,7 @@ echo "=========================================="
 echo " セットアップが完了しました"
 echo "=========================================="
 echo "次にやること:"
-echo "  1. 担当者から届いた3つのファイル(template.prproj / style_analysis.json /"
+echo "  1. 担当者から届いた4つのファイル(template.prproj / style_analysis.json /"
 echo "     style_se_categories.json / license.key)を"
 echo "     $APP_DIR/customer_package フォルダに入れる"
 echo "  2. 台本(.rtf)と音声/動画ファイルを"
